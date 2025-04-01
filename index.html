@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>प्रतिदिनं रामायणपारायणम्  </title>
+<meta name="description" content="जयतु संस्कृतम्">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://samskrita-bharati.github.io/pdrp/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="प्रतिदिनं रामायणपारायणम्">
+<meta property="og:description" content="जयतु संस्कृतम्">
+<meta property="og:image" content="">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="https://samskrita-bharati.github.io/pdrp/">
+<meta property="twitter:url" content="https://samskrita-bharati.github.io/pdrp/">
+<meta name="twitter:title" content="प्रतिदिनं रामायणपारायणम्">
+<meta name="twitter:description" content="जयतु संस्कृतम्">
+<meta name="twitter:image" content="">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	
+    <script type="text/javascript" src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+    <script type="text/javascript" src='js/sheetsee.js'></script>
+    <script type="text/javascript" src='js/table3.js'></script>
+    <script type="text/javascript" src='js/leaflet.markercluster.js'></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <h2>"प्रतिदिनं संस्कृतम्"</h2>
+  <h1 style="color:Tomato">रामायणपारायणम्</h1>
+    
+  <div id="calendar-goes-here"></div>
+  </body>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      //var URL = "1G9o_2WF9TlCkh3CzdmQLGLdj3Q-erwaXrlPVTHo28WQ";
+	  var lnk= "https://docs.google.com/spreadsheets/d/e/2PACX-1vROCnxA2L3GBR0VQ6Ts53oWhhcoJLDfpLYbORevHKlc6ZGStqROVLOsPHEgRBwHq61KUf3P28W4Q9zw/pub?gid=0&single=true&output=csv";
+	  Papa.parse(lnk, {
+          download: true,
+          header: true,
+          complete: generateCalendar
+		  })
+    })
+  </script>
+</html>
