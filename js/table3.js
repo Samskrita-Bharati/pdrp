@@ -2,7 +2,18 @@ var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept"
 var weekdays   = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekdays = ["सोमवासरः", "मङ्गलवासरः", "बुधवासरः", "गुरुवासरः", "शुक्रवासरः", "शनिवासरः", "रविवासरः"]
 var symbols = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९','१०', '११', '१२', '१३', '१४', '१५', '१६', '१७', '१८', '१९','२०', '२१', '२२', '२३', '२४', '२५', '२६', '२७', '२८', '२९','३०','३१'];
+
+const urlParams = new URLSearchParams(window.location.search);
+var raama = urlParams.get('raama');
+if (raama!="aam")
+{
 var today  = new Date()
+}
+else
+{
+var today = new Date(2026,04,30,00,00,00);
+}
+
 var months = []
 
 function generateCalendar (eventData) {
@@ -47,8 +58,23 @@ function addMonthMenu() {
 function appendEvent( event ) {
   var eventStartDate = new Date(event.startdate)
   var eventEndDate   = new Date(event.enddate)
-  var eventElement   = $('<div class="event"><a target="_blank" href="' + event.tickets + event.name + '.html">' + event.name + " - " + event.time + '</a></div>')
-
+  
+if( raama == "aam")
+  {
+	  var eventElement   = $('<div class="event"><a target="pdrp5127" href="' + event.tickets + event.name + '"><b>' + event.name.substr(0,event.name.length-1) + "</b> - " + event.time + '</a></div>')
+	    $('#' + formattedDate(eventStartDate)).removeClass('no-event').append(eventElement)
+  }
+  
+    else {
+	if (eventStartDate < today)
+	{
+	  var eventElement   = $('<div class="event"><a target="pdrp5127" href="' + event.tickets + event.name + '"><b>' + event.name.substr(0,event.name.length-1) + "</b> - " + event.time + '</a></div>')
+	}
+	  else
+	  {
+		var eventElement = $('<div class="event"><b>' + event.name.substr(0,event.name.length-1) + "</b> - " + event.time + '</div>')
+	  }
+}
   // Handle multi-days
   if ( eventEndDate.getDate() ) {
     var date         = eventStartDate
@@ -71,7 +97,7 @@ function appendEvent( event ) {
         dateElement.append('<div class="event spacer">&nbsp;</div>')
       })
 
-      dateElement.removeClass('no-event').append('<div class="event multi-days following-days" title="' + event.name + '"><a target="_blank" href="' + event.tickets + '">' + event.name + '</a></div>')
+      dateElement.removeClass('no-event').append('<div class="event multi-days following-days" title="' + event.name + '"><a target="pdrp5127" href="' + event.tickets + '">' + event.name + '</a></div>')
     }
   }
 
